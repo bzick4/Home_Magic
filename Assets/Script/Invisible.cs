@@ -3,17 +3,31 @@ using UnityEngine;
 
 public class Invisible : MonoBehaviour
 {
-    [SerializeField]
-    private SkinnedMeshRenderer _Body,
-    _Cloack, _Skirt, _Weapons;
+    [SerializeField] private SkinnedMeshRenderer[] _Body;
+    
+    
     private string _nameFloat = "_DissAmount";
     private bool _isInvis = false;
     private float treshold = 0;
+    private Material[] _bodyMaterials;
 
     public float Delay = 1f;
 
     private float _time = float.MinValue;
     private Coroutine _currentRoutine;
+
+    private void Awake()
+    {
+
+        _bodyMaterials = new Material[_Body.Length];
+        for (int i = 0; i < _Body.Length; i++)
+        {
+            if (_Body[i] != null)
+            {
+                _bodyMaterials[i] = _Body[i].material;
+            }
+        }
+    }
 
     private void Update()
     {
@@ -47,10 +61,9 @@ public class Invisible : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             treshold = Mathf.Clamp01(elapsed / Delay);
-            _Body.material.SetFloat(_nameFloat, treshold);
-            _Cloack.material.SetFloat(_nameFloat, treshold);
-            _Skirt.material.SetFloat(_nameFloat, treshold);
-            _Weapons.material.SetFloat(_nameFloat, treshold);
+            
+            SetShaderFloatInAllMaterials(treshold);
+           
             yield return null;
         }
     }
@@ -64,11 +77,21 @@ public class Invisible : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             treshold = 1f - Mathf.Clamp01(elapsed / Delay);
-            _Body.material.SetFloat(_nameFloat, treshold);
-            _Cloack.material.SetFloat(_nameFloat, treshold);
-            _Skirt.material.SetFloat(_nameFloat, treshold);
-            _Weapons.material.SetFloat(_nameFloat, treshold);
+            
+            SetShaderFloatInAllMaterials(treshold);
+           
             yield return null;
+        }
+    }
+
+    private void SetShaderFloatInAllMaterials(float value)
+    {
+        foreach (var mat in _bodyMaterials)
+        {
+            if (mat != null && mat.HasProperty(_nameFloat))
+            {
+                mat.SetFloat(_nameFloat, value);
+            }
         }
     }
 }

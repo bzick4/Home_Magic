@@ -7,6 +7,7 @@ public class RayScript : MonoBehaviour
 
 
     [SerializeField] private AnimationClip _ReturnAnimation;
+    [SerializeField] private ParticleSystem _particleSystem;
     private Animator _animator => GetComponent<Animator>();
 
     private RaycastHit hit;
@@ -55,6 +56,7 @@ public class RayScript : MonoBehaviour
         {
             Debug.Log("Попал в: " + hit.collider.name);
             StartCoroutine(WaitTranformObject(transformable));
+            
             _animator.SetTrigger("Return");
         }
     }
@@ -72,7 +74,9 @@ public class RayScript : MonoBehaviour
     private IEnumerator WaitTranformObject(ITransform transformable)
     {
         float animationDuration = _ReturnAnimation.length;
+         _particleSystem.Play();
         yield return new WaitForSeconds(animationDuration / 2);
+        _particleSystem.Stop();
         transformable.OnTransformBlock();
 
     }
