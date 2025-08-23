@@ -10,11 +10,13 @@ public class ControllerCC : MonoBehaviour
 
     private CharacterController controller;
     private Animator animator;
+    private Health health;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        health = GetComponent<Health>();
     }
 
     private void Update()
@@ -41,4 +43,20 @@ public class ControllerCC : MonoBehaviour
             animator.SetFloat("Blend", blend, 0.2f, Time.deltaTime);
         }
     }
+
+   private void OnEnable()
+    {
+        Health.OnDamage += PlayDeathAnimation;
+    }
+
+    private void OnDisable()
+    {
+        Health.OnDamage -= PlayDeathAnimation;
+    }
+
+    private void PlayDeathAnimation()
+    {
+        animator.SetTrigger("Dead");
+    }
+
 }
