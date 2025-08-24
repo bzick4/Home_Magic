@@ -22,6 +22,7 @@ public class ControllerCC : MonoBehaviour
     private void Update()
     {
         Move();
+        Hello();
     }
 
     private void Move()
@@ -44,7 +45,7 @@ public class ControllerCC : MonoBehaviour
         }
     }
 
-   private void OnEnable()
+    private void OnEnable()
     {
         Health.OnDamage += PlayDeathAnimation;
     }
@@ -57,6 +58,13 @@ public class ControllerCC : MonoBehaviour
     private void PlayDeathAnimation()
     {
         animator.SetTrigger("Dead");
+        animator.SetLayerWeight(1, 0f);
+    }
+
+    private void Hello()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        animator.SetTrigger("Hello");
     }
 
 }

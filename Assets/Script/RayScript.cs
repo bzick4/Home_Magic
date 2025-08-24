@@ -13,7 +13,10 @@ public class RayScript : MonoBehaviour
     private RaycastHit hit;
     private GlowOutline _lastOutlineObject;
 
-
+    private void Start()
+    {
+        _animator.SetLayerWeight(1, 1f);
+    }
     private void Update()
     {
         CastRay();
