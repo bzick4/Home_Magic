@@ -13,30 +13,55 @@ public class Load : MonoBehaviour
     [SerializeField] private float _loadSpeed = 1f;
     [SerializeField] private string _loadingFormat;
     public float _currentLoad { get; private set; }
+    public event Action<int> OnLoadMilestone;
 
 
     private void Awake()
     {
         _currentLoad = 0;
         _LoadUI.SetActive(true);
-        
+
         StartLoadingAsync();
     }
 
 
     public async Task StartLoadingAsync()
     {
-        _currentLoad = 0;
+        float[] _milestones = new float[] {_MaxLoad * 0.25f, _MaxLoad * 0.5f, _MaxLoad * 0.75f, _MaxLoad};
+        // _currentLoad = 0;
 
-        while (_currentLoad < _MaxLoad)
+        // while (_currentLoad < _MaxLoad)
+        // {
+        //     _currentLoad += _loadSpeed;
+        //     UpdateLoadBar();
+        //     await Task.Delay(150);
+        // }
+
+        // _currentLoad = _MaxLoad;
+        // UpdateLoadBar();
+        // _LoadUI.SetActive(false);
+
+        for (int i = 0; i < _milestones.Length; i++)
         {
-            _currentLoad += _loadSpeed;
-            UpdateLoadBar();
-            await Task.Delay(150);
-        }
+            float targetLoad = _milestones[i];
 
-        _currentLoad = _MaxLoad;
-        UpdateLoadBar();
+            while (_currentLoad < targetLoad)
+            {
+                _currentLoad = Mathf.Min(_currentLoad + _loadSpeed, targetLoad);
+                UpdateLoadBar();
+                await Task.Delay(150);
+            }
+
+            OnLoadMilestone?.Invoke(i);
+            Debug.Log($"Достигнут milestone {i}: {_currentLoad}%");
+
+            if (i < _milestones.Length - 1)
+            {
+                await Task.Delay(3000);
+            }
+        }
+        
+        await Task.Delay(1500); 
         _LoadUI.SetActive(false);
     }
 
