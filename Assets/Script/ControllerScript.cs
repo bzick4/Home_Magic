@@ -32,7 +32,7 @@ public class ControllerScript : MonoBehaviour
     //     Debug.Log("Скрипты игрока активированы.");
     // // }
 
-    [SerializeField] private MonoBehaviour[] _PlayerScripts; // Массив скриптов в порядке активации
+    [SerializeField] private MonoBehaviour[] _PlayerScripts;
     [SerializeField] private Load _LoadingScreen;
 
     private void Start()
@@ -44,7 +44,6 @@ public class ControllerScript : MonoBehaviour
                 script.enabled = false;
         }
 
-        // Подписываемся на события загрузки
         _LoadingScreen.OnLoadMilestone += EnableScriptByIndex;
     }
 
@@ -55,13 +54,12 @@ public class ControllerScript : MonoBehaviour
         if (_PlayerScripts[index] != null)
         {
             _PlayerScripts[index].enabled = true;
-            Debug.Log($"Активирован скрипт {_PlayerScripts[index].GetType().Name}");
+            //Debug.Log($"Активирован скрипт {_PlayerScripts[index].GetType().Name}");
         }
     }
 
     private void OnDestroy()
     {
-        // Отписываемся от события
         if (_LoadingScreen != null)
             _LoadingScreen.OnLoadMilestone -= EnableScriptByIndex;
     }

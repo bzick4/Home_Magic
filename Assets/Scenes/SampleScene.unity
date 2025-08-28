@@ -1231,6 +1231,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420449135}
   m_CullTransparentMesh: 1
+--- !u!1 &426534147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 426534148}
+  - component: {fileID: 426534149}
+  m_Layer: 0
+  m_Name: GameSetting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &426534148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426534147}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.870001, y: 1.5400001, z: 13.030001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &426534149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426534147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85ab0e5a4b3d44e05b9da0b914690a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _EasySettings: {fileID: 11400000, guid: 54506ad585e5f4d84a78a6927f1a19f7, type: 2}
+  _HardSettings: {fileID: 11400000, guid: 9c21ef4c1dc294d019e23abb3a66cdbb, type: 2}
+  _selectedDifficulty: 0
 --- !u!1 &477727665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,8 +1483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10458b9a2cc04e4381516bf119076f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 3
-  runSpeed: 6
   rotationSpeed: 200
 --- !u!114 &493279013
 MonoBehaviour:
@@ -1451,7 +1496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334647014ab774e37be32ccc0ba11d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
 --- !u!1 &544850861
 GameObject:
   m_ObjectHideFlags: 0
@@ -8180,3 +8224,4 @@ SceneRoots:
   - {fileID: 117068186}
   - {fileID: 544850866}
   - {fileID: 477727668}
+  - {fileID: 426534148}
