@@ -9,7 +9,7 @@ public class RayScript : MonoBehaviour
     [SerializeField] private AnimationClip _ReturnAnimation;
     [SerializeField] private ParticleSystem _particleSystem;
     private Animator _animator => GetComponent<Animator>();
-
+   
     private RaycastHit hit;
     private GlowOutline _lastOutlineObject;
 
@@ -59,7 +59,7 @@ public class RayScript : MonoBehaviour
         {
             Debug.Log("Попал в: " + hit.collider.name);
             StartCoroutine(WaitTranformObject(transformable));
-            
+           
             _animator.SetTrigger("Return");
         }
     }

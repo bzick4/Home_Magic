@@ -10,6 +10,7 @@ public class ControllerCC : MonoBehaviour
 
     private CharacterController controller;
     private Animator animator;
+     private CharacterData _data => GetComponent<CharacterData>();
     // private Health health;
 
     private void Awake()
@@ -84,7 +85,11 @@ public class ControllerCC : MonoBehaviour
     private void Hello()
     {
         if (Input.GetKeyDown(KeyCode.H))
+        {
             animator.SetTrigger("Hello");
+            _data.Score(10);
+        }
+
     }
 
 }
