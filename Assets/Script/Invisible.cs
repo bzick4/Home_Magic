@@ -39,10 +39,10 @@ public class Invisible : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Execute();
-        }
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     Execute();
+        // }
     }
     public void Execute()
     {

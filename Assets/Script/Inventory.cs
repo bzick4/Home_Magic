@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] GameObject _Inventory;
-    private bool _isInventory;
+    [SerializeField] private GameObject _Inventory;
+    private CraftController _craftController => GetComponentInChildren<CraftController>();
 
+    private bool _isInventory;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
@@ -17,6 +18,7 @@ public class Inventory : MonoBehaviour
             else
             {
                 _isInventory = false;
+                _craftController._isCraftModeActive = false;
                 _Inventory.SetActive(false);
             }
         }
